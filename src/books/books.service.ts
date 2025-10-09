@@ -75,16 +75,16 @@ export class BooksService {
   }
 
   createBook(bookData: any) {
-    const newBook = { 
-      id: this.books.length + 1, 
-      available: true, 
-      ...bookData,
-      title: bookData.title.toUpperCase(),
-      author: bookData.author.toUpperCase()
-    };
-    this.books.push(newBook);
-    return { message: 'Book added successfully', book: newBook };
-  }
+  const newBook = { 
+    id: this.books.length + 1, 
+    available: true, 
+    ...bookData,
+    title: bookData.title?.toUpperCase() || '',
+    author: bookData.author?.toUpperCase() || ''
+  };
+  this.books.push(newBook);
+  return { message: 'Book added successfully', book: newBook };
+}
 
   getBook(id: string) {
     return this.books.find(book => book.id === parseInt(id));
